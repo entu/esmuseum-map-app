@@ -2,11 +2,10 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
-    '@nuxt/scripts',
+    '@nuxt/icon',
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
-    '@vueuse/nuxt',
-    'nuxt-icons'
+    '@vueuse/nuxt'
   ],
   ssr: false,
   devtools: { enabled: false },
@@ -14,7 +13,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     entuKey: '',
     public: {
-      entuUrl: '',
+      entuDb: '',
+      entuUrl: ''
     }
   },
   future: {
@@ -28,15 +28,22 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
+    locales: [
+      { code: 'en', name: 'English' },
+      { code: 'et', name: 'Eesti' }
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
     vueI18n: '~~/.config/i18n.config.ts'
   },
-  scripts: {
-    registry: {
-      plausibleAnalytics: { domain: 'plugins.entu.app' }
-    }
+  icon: {
+    customCollections: [{
+      prefix: 'local',
+      dir: './app/assets/icons'
+    }]
   },
   tailwindcss: {
-    cssPath: '~/assets/tailwind.css',
+    cssPath: './app/assets/tailwind.css',
     configPath: '~~/.config/tailwind.config.ts'
   }
 })
